@@ -1,29 +1,19 @@
-import {StyleSheet, View, Text} from 'react-native';
 import React from 'react';
-import onClick from './onClick';
+import Click from './onClick';
 
 
-export default function App(){
+
+export default function App(props){
   
+  const pop = ()=>{
+    alert("Don't touch me")
+  }
+
+
   return(
-    <View style={styles.container}>
-      <Text style={styles.text} onPress={onClick}>Click Me</Text>
-    </View>
+    
+      <Click handleClick= {pop} />
+   
   
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      justifyContent: 'center',
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor: 'green'
-      
-    },
-    text: {
-      fontWeight: 'bold',
-
-    } 
-  }
-)

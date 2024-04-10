@@ -1,7 +1,29 @@
+import {StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+
+export default function Click({handleClick}){
 
 
-const onClick = ()=>{
-    alert("Don't touch me")
-
+    return (
+    
+    <View style={styles.container}>
+        <Text style={styles.text} onPress={handleClick}>Click Me</Text>
+    </View>
+    )
 }
-export default onClick;
+
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'green'
+      
+    },
+    text: {
+      fontWeight: 'bold',
+      fontSize: 30
+
+    } 
+  }
+)

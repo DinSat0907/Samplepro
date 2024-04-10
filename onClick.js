@@ -3,7 +3,6 @@ import React from 'react';
 
 export default function Click({handleClick}){
 
-
     return (
     
     <View style={styles.container}>
@@ -22,8 +21,13 @@ const styles = StyleSheet.create({
     },
     text: {
       fontWeight: 'bold',
-      fontSize: 30
-
+      fontSize: 35,
+      borderWidth: 1,
+      borderColor: 'black',
+      padding: 10,
+      backgroundColor: 'lightblue',
+      borderRadius: 10,
+      backfaceVisibility: 20  
     } 
   }
 )

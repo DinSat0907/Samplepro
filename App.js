@@ -7,7 +7,7 @@ export default function App(){
   
   return(
     <View style={styles.container}>
-      <Text style={styles.text} onPress={onClick}>Click Me</Text>
+      <Text style={styles.text} onPress={onClick}>Click</Text>
     </View>
   
     )
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     text: {
       fontWeight: 'bold',
 
-    }
-    
+    } 
   }
 )

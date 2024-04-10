@@ -7,7 +7,7 @@ export default function App(){
   
   return(
     <View style={styles.container}>
-      <Text style={styles.text} onPress={onClick}>Click</Text>
+      <Text style={styles.text} onPress={onClick}>Click Me</Text>
     </View>
   
     )

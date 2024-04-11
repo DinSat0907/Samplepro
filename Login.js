@@ -1,48 +1,43 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Login({navigation}){
-
-  const [changeName, setChangeName] = useState('')
-  const [changeNameError, setChangeNameError] = useState(false)
-  
-  const HandleNameChange = (e)=>{
-    setChangeName(e)
-    console.log(e)
-    if (e != '') {
-
-      setChangeNameError(true)
-
+    const [username, setUsername] = useState('')
+    const [number, setNumber] = useState('')
+    const [password, setPassword] = useState('')
+    
+    const saveInput = async () => {
+        try {
+            await AsyncStorage.setItem('username', username)
+            await AsyncStorage.setItem('number', number)
+            await AsyncStorage.setItem('password', password)
+            navigation.navigate('Home')
+        } catch (error) {
+            console.error('Error saving data:', error)
+        }
     }
-    else{
-
-      setChangeNameError(false)
-
-    }
-  }
-
+      
   return (
     <View style={Styles.LogCon}>
       <View style={Styles.Header}>
         <Text style={Styles.LogName}>Welcome to Login Page</Text>
       </View>
       <View style={Styles.InputCon}>
-       <View style={Styles.NameInput}>
-        <TextInput keyboardType='default' placeholder='User Name'maxLength={15} value={changeNameError} onChangeText={(e)=>HandleNameChange(e)}></TextInput>
-       </View>
-       <View style={Styles.MobileInput}>
-        <TextInput keyboardType='number-pad' placeholder='Mobile Number' maxLength={10}></TextInput>
-       </View>
-       <View style={Styles.PasswordInput}>
-        <TextInput secureTextEntry= {true} placeholder='Password' maxLength={5}></TextInput>
-       </View>
-       <Text>{changeName}</Text>
-        <TouchableOpacity style={Styles.SubmitBut} onPress={()=> navigation.navigate('Home')}>
-         <Text style={{color: 'white'}}>LogIn</Text>
-        </TouchableOpacity>
+        <View style={Styles.NameInput}>
+            <TextInput keyboardType='default' placeholder='User Name'maxLength={15} value={username} onChangeText={(Text)=>setUsername(Text)}></TextInput>
+        </View>
+        <View style={Styles.MobileInput}>
+            <TextInput keyboardType='number-pad' placeholder='Mobile Number' maxLength={10} value={number} onChangeText={(Text)=>setNumber(Text)}></TextInput>
+        </View>
+        <View style={Styles.PasswordInput}>
+            <TextInput secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
+        </View>
+            <TouchableOpacity style={Styles.SubmitBut} onPress={saveInput}>
+                <Text style={{color: 'white'}}>LogIn</Text>
+            </TouchableOpacity>
       </View>      
-    </View>
-    
+    </View>  
   )
 }
 
@@ -52,7 +47,7 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     display: 'flex', 
-    backgroundColor: 'orange', 
+    backgroundColor: '#a52a2a', 
     fontFamily: 'serif'
   },
 

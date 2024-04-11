@@ -1,15 +1,15 @@
-// import React from "react"
-// import { View, Text, Button, StyleSheet } from 'react-native';
+import React from "react"
+import { View, Text, Button} from 'react-native';
 
 
 
-// export default function Home(){
+export default function Home({navigation}){
     
-//     return(
+    return(
     
-//     <View styles={Styles.HomeCon}>
-//       <Text>Welcome to my WebPage</Text>
-//       <Button title="Go back to Login"/>
-//     </View>
-//     )
-// }
+    <View styles={Styles.HomeCon}>
+      <Text>Welcome to my WebPage</Text>
+      <Button title="Go back to Login" onPress={()=> navigation.navigate('Login')}/>
+    </View>
+    )
+}

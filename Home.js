@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, Button} from 'react-native';
+import { View, Text, Button, StyleSheet} from 'react-native';
 
 
 
@@ -7,9 +7,23 @@ export default function Home({navigation}){
     
     return(
     
-    <View styles={Styles.HomeCon}>
-      <Text>Welcome to my WebPage</Text>
-      <Button title="Go back to Login" onPress={()=> navigation.navigate('Login')}/>
+    <View style={Styles.HomeCon}>
+      <Text style={Styles.Header}>Welcome to my WebPage</Text>
+      <Button title="Go back" onPress={()=> navigation.navigate('Login')}/>
     </View>
     )
 }
+
+const  Styles = StyleSheet.create({
+    HomeCon: {
+        justifyContent: 'center',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: 'pink'
+    },
+    Header: {
+        fontWeight: '900',
+        fontSize: 25
+    }
+})

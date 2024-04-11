@@ -34,7 +34,7 @@ export default function Login({navigation}){
         <TextInput keyboardType='number-pad' placeholder='Mobile Number' maxLength={10}></TextInput>
        </View>
        <View style={Styles.PasswordInput}>
-        <TextInput keyboardType = 'numeric' placeholder='Password' maxLength={5}></TextInput>
+        <TextInput secureTextEntry= {true} placeholder='Password' maxLength={5}></TextInput>
        </View>
        <Text>{changeName}</Text>
         <TouchableOpacity style={Styles.SubmitBut} onPress={()=> navigation.navigate('Home')}>

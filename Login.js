@@ -21,7 +21,7 @@ export default function Login({navigation}){
   return (
     <View style={Styles.LogCon}>
       <View style={Styles.Header}>
-        <Text style={Styles.LogName}>Welcome to Login Page</Text>
+        <Text testID='HomeHeading' style={Styles.LogName}>Welcome to Login Page</Text>
       </View>
       <View style={Styles.InputCon}>
         <View style={Styles.NameInput}>
@@ -54,7 +54,6 @@ const Styles = StyleSheet.create({
   LogName: {
     fontSize: 30,
     fontWeight: '900',
-    marginTop: 50
   },
   
   NameInput: {

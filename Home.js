@@ -31,9 +31,9 @@ export default function Home({navigation}){
     <View style={Styles.HomeCon}>
       <Text style={Styles.Header}>Welcome to my WebPage</Text>
       <View >
-        <Text style={Styles.LocalStorage}>Username: {username}</Text>
-        <Text style={Styles.LocalStorage}>Number: {number}</Text>
-        <Text style={Styles.LocalStorage}>Password: {password}</Text>
+        <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Username: </Text>{username}</Text>
+        <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Number: </Text>{number}</Text>
+        <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Password: </Text>{password}</Text>
       </View>
 
       <Button title="Go back" onPress={()=> navigation.navigate('Login')}/>
@@ -52,6 +52,9 @@ const  Styles = StyleSheet.create({
     Header: {
         fontWeight: '900',
         fontSize: 25
+    },
+    InlineText: {
+        fontWeight: '600'
     },
     LocalStorage: {
         marginTop: -85,

@@ -57,7 +57,7 @@ const  Styles = StyleSheet.create({
         fontWeight: '600'
     },
     LocalStorage: {
-        marginTop: -85,
+        marginBottom: 40,
         fontSize: 23
     }
 

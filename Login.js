@@ -24,14 +24,14 @@ export default function Login({navigation}){
         <Text testID='HomeHeading' style={Styles.LogName}>Welcome to Login Page</Text>
       </View>
       <View style={Styles.InputCon}>
-        <View style={Styles.NameInput}>
-            <TextInput keyboardType='default' placeholder='User Name'maxLength={15} value={username} onChangeText={(Text)=>setUsername(Text)}></TextInput>
+        <View >
+            <TextInput style={Styles.NameInput} keyboardType='default' placeholder='User Name'maxLength={15} value={username} onChangeText={(Text)=>setUsername(Text)}></TextInput>
         </View>
-        <View style={Styles.MobileInput}>
-            <TextInput keyboardType='number-pad' placeholder='Mobile Number' maxLength={10} value={number} onChangeText={(Text)=>setNumber(Text)}></TextInput>
+        <View >
+            <TextInput style={Styles.MobileInput} keyboardType='number-pad' placeholder='Mobile Number' maxLength={10} value={number} onChangeText={(Text)=>setNumber(Text)}></TextInput>
         </View>
-        <View style={Styles.PasswordInput}>
-            <TextInput secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
+        <View >
+            <TextInput style={Styles.PasswordInput} secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
         </View>
             <TouchableOpacity style={Styles.SubmitBut} onPress={saveInput}>
                 <Text style={{color: 'white'}}>LogIn</Text>
@@ -48,7 +48,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     display: 'flex', 
     backgroundColor: '#a52a2a', 
-    fontFamily: 'serif'
+    
   },
 
   LogName: {
@@ -60,10 +60,11 @@ const Styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'gray',
     borderRadius: 10,
-    alignItems: 'center',
+    textAlign: 'center',
     height: 40,
     width: 220,
     backgroundColor: 'lightgray'
+
     },
 
   MobileInput: {
@@ -71,7 +72,7 @@ const Styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 10,
     marginTop: 9,
-    alignItems: 'center',
+    textAlign: 'center',
     height: 40,
     width: 220,
     backgroundColor: 'lightgray'
@@ -82,7 +83,7 @@ const Styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 10,
     marginTop: 9,
-    alignItems: 'center',
+    textAlign: 'center',
     height: 40,
     width: 220,
     backgroundColor: 'lightgray'

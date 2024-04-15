@@ -7,15 +7,95 @@ export default function Login({navigation}){
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
     
-    const saveInput = async () => {
+
+
+
+    const saveInput = async ()=>{
+      if (username != '' && number !='' && password != ''){
+        
         try {
-            await AsyncStorage.setItem('username', username)
-            await AsyncStorage.setItem('number', number)
-            await AsyncStorage.setItem('password', password)
-            navigation.navigate('Home')
+          await AsyncStorage.setItem('username', username)
+          
         } catch (error) {
-            console.error('Error saving data:', error)
+          console.error('Error saving data to local storage:', error);
         }
+        // AsyncStorage.setItem('number', number)
+        // AsyncStorage.setItem('password', password)
+        // alert('Login Successfully')
+        navigation.navigate('Home')
+        
+
+      } 
+      else if (username != ''){
+        if (number != '') {
+          if (password != ''){
+            // AsyncStorage.setItem('username', username)
+            // AsyncStorage.setItem('number', number)
+            // AsyncStorage.setItem('password', password)
+            // alert('Login Successfully')
+            navigation.navigate('Home')
+            try {
+              await AsyncStorage.setItem('username', username)
+            } catch (error) {
+              console.error('Error saving data to local storage:', error);
+            }
+          }
+          else{
+            alert('Please enter your Password')
+          }
+        }
+        else{
+          alert('Please enter your Number')
+        } 
+      }
+      else if (number != ''){
+        if (username != '') {
+          if (password != ''){
+            try {
+              await AsyncStorage.setItem('username', username)
+            } catch (error) {
+              console.error('Error saving data to local storage:', error);
+            }
+            // AsyncStorage.setItem('username', username)
+            // AsyncStorage.setItem('number', number)
+            // AsyncStorage.setItem('password', password)
+            // alert('Login Successfully')
+            navigation.navigate('Home')
+            
+          }
+          else{
+            alert('Please enter your Password')
+          }
+        }
+        else{
+          alert('Please enter your username')
+        }
+      }
+      else if (password != ''){
+        if (username != '') {
+          if (number != ''){
+            try {
+              await AsyncStorage.setItem('username', username)
+            } catch (error) {
+              console.error('Error saving data to local storage:', error);
+            } 
+            // AsyncStorage.setItem('username', username)
+            // AsyncStorage.setItem('number', number)
+            // AsyncStorage.setItem('password', password)
+            // alert('Login Successfully')
+            navigation.navigate('Home')    
+          }
+          else{
+            alert('Please enter your Number')
+          }
+        }
+        else{
+          alert('Please enter your username')
+        } 
+      }
+      else{
+        alert('Please Enter the fields')
+      }
     }
       
   return (
@@ -33,8 +113,8 @@ export default function Login({navigation}){
         <View >
             <TextInput style={Styles.PasswordInput} secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
         </View>
-            <TouchableOpacity style={Styles.SubmitBut} onPress={saveInput}>
-                <Text style={{color: 'white'}}>LogIn</Text>
+            <TouchableOpacity  >
+                <Text onPress={saveInput} testID='onClick'style={Styles.SubmitBut} >LogIn</Text>
             </TouchableOpacity>
       </View>      
     </View>  
@@ -47,7 +127,7 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     display: 'flex', 
-    backgroundColor: '#a52a2a', 
+    backgroundColor: '#a52a2a',
     
   },
 
@@ -95,9 +175,10 @@ const Styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 60,
     paddingVertical: 10,
-    alignItems: 'center',
+    textAlign: 'center',
     height: 40,
     width: 220,
     backgroundColor: 'blue',
+    color: 'white'
   }
 })

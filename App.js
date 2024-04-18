@@ -6,9 +6,9 @@ import Login from './Login';
 import Home from './Home';
 
 
-const Stack = createStackNavigator();
-
 export default App = () => {
+
+  const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       <StatusBar style='light' />

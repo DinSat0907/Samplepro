@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>12/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>12/13</span>
             </div>
         
             
@@ -113,22 +113,32 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,7 +153,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +175,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { View, Text, Button, StyleSheet} from 'react-native';
 import React, { useEffect, useState } from 'react'
-// import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 &nbsp;
 export default function Home({navigation}){
 &nbsp;
@@ -174,21 +184,26 @@ export default function Home({navigation}){
     const [password, setPassword] = useState('')
   
     useEffect(() =&gt; {
-      // AsyncStorage.getItem('username').then((value) =&gt; setUsername(value));
-      // AsyncStorage.getItem('number').then((value) =&gt; setNumber(value));
-      // AsyncStorage.getItem('password').then((value) =&gt; setPassword(value));
+      const storedUsername = AsyncStorage.getItem('username')
+      const storedNumber = AsyncStorage.getItem('number')
+      const storedPassword = AsyncStorage.getItem('password')
+      setUsername(storedUsername || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+      setNumber(storedNumber || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+      setPassword(storedPassword || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+&nbsp;
     }, [])
+&nbsp;
     return(
     
       &lt;View style={Styles.HomeCon}&gt;
-        &lt;Text style={Styles.Header}&gt;Welcome to my WebPage&lt;/Text&gt;
+        &lt;Text testID='HeaderName' style={Styles.Header}&gt;Welcome to my WebPage&lt;/Text&gt;
         &lt;View &gt;
           &lt;Text style={Styles.LocalStorage}&gt;&lt;Text style={Styles.InlineText}&gt;Username: &lt;/Text&gt;{username}&lt;/Text&gt;
           &lt;Text style={Styles.LocalStorage}&gt;&lt;Text style={Styles.InlineText}&gt;Number: &lt;/Text&gt;{number}&lt;/Text&gt;
           &lt;Text style={Styles.LocalStorage}&gt;&lt;Text style={Styles.InlineText}&gt;Password: &lt;/Text&gt;{password}&lt;/Text&gt;
         &lt;/View&gt;
 &nbsp;
-        &lt;Button title="Go back" onPress={<span class="fstat-no" title="function not covered" >()</span>=&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('Login')}</span>/&gt;
+        &lt;Button title="Go Back" onPress={<span class="fstat-no" title="function not covered" >()</span>=&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('Login')}</span>/&gt;
       &lt;/View&gt;
     )
 }
@@ -220,7 +235,7 @@ const  Styles = StyleSheet.create({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-15T12:37:40.498Z
+                at 2024-04-17T15:18:41.474Z
             </div>
         <script src="prettify.js"></script>
         <script>

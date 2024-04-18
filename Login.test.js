@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Login from './Login';
-import App from './App';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
 );
+
 
 test('renders correctly', () => {
   const {getByPlaceholderText, getByText} = render(<Login />);
@@ -27,25 +27,30 @@ test('renders correctly', () => {
 });
 
 
+describe('Login', ()=>{
 
-test('should call saveInput with username, number and password when login button is pressed', () => {
-  
-  const navigation = { navigate: jest.fn() };
+  test('should call saveInput with username, number and password when logIn button is pressed', () => {
+    
+    // const navigation = { navigate: jest.fn() };
 
-  const { getByPlaceholderText, getByText } = render(<App/>);
+    // const { getByPlaceholderText, getByText } = render(<App/>)
+
+    const navigationMock = { navigate: jest.fn() };
+    const { getByText, getByPlaceholderText } = render(<Login navigation={navigationMock} />);
 
 
-  const emailInput = getByPlaceholderText('User Name');
-  const numberInput = getByPlaceholderText('Mobile Number');
-  const passwordInput = getByPlaceholderText('Password');
-  const loginButton = getByText('LogIn');
+    const userInput = getByPlaceholderText('User Name');
+    const numberInput = getByPlaceholderText('Mobile Number');
+    const passwordInput = getByPlaceholderText('Password');
+    const loginButton = getByText('LogIn');
 
-  fireEvent.changeText(emailInput, 'username');
-  fireEvent.changeText(numberInput, 'number');
-  fireEvent.changeText(passwordInput, 'password');
-  fireEvent.press(loginButton);
+    fireEvent.changeText(userInput, 'username');
+    fireEvent.changeText(numberInput, '1234567890');
+    fireEvent.changeText(passwordInput, '12345');
+    fireEvent.press(loginButton);
 
-  expect(navigation.navigate).toHaveBeenCalledWith('Home');
+    expect(navigationMock.navigate).toHaveBeenCalledWith('Home');
 
-});
+  });
 
+})

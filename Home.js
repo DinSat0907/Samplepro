@@ -1,6 +1,6 @@
 import { View, Text, Button, StyleSheet} from 'react-native';
 import React, { useEffect, useState } from 'react'
-// import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home({navigation}){
 
@@ -9,21 +9,22 @@ export default function Home({navigation}){
     const [password, setPassword] = useState('')
   
     useEffect(() => {
-      // AsyncStorage.getItem('username').then((value) => setUsername(value));
-      // AsyncStorage.getItem('number').then((value) => setNumber(value));
-      // AsyncStorage.getItem('password').then((value) => setPassword(value));
+      AsyncStorage.getItem('username').then((value) => setUsername(value));
+      AsyncStorage.getItem('number').then((value) => setNumber(value));
+      AsyncStorage.getItem('password').then((value) => setPassword(value));
     }, [])
+
     return(
     
       <View style={Styles.HomeCon}>
-        <Text style={Styles.Header}>Welcome to my WebPage</Text>
+        <Text testID='HeaderName' style={Styles.Header}>Welcome to my WebPage</Text>
         <View >
           <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Username: </Text>{username}</Text>
-          <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Number: </Text>{number}</Text>
+          <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Mobile Number: </Text>{number}</Text>
           <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Password: </Text>{password}</Text>
         </View>
 
-        <Button title="Go back" onPress={()=> navigation.navigate('Login')}/>
+        <Button title="Go Back" onPress={()=> navigation.navigate('Login')}/>
       </View>
     )
 }

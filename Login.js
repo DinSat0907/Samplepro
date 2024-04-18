@@ -10,35 +10,22 @@ export default function Login({navigation}){
 
 
 
-    const saveInput = async ()=>{
+    const saveInput = ()=>{
       if (username != '' && number !='' && password != ''){
-        
-        try {
-          await AsyncStorage.setItem('username', username)
-          
-        } catch (error) {
-          console.error('Error saving data to local storage:', error);
-        }
-        // AsyncStorage.setItem('number', number)
-        // AsyncStorage.setItem('password', password)
+        AsyncStorage.setItem('username', username)
+        AsyncStorage.setItem('number', number)
+        AsyncStorage.setItem('password', password)
         // alert('Login Successfully')
         navigation.navigate('Home')
-        
-
       } 
       else if (username != ''){
         if (number != '') {
           if (password != ''){
-            // AsyncStorage.setItem('username', username)
-            // AsyncStorage.setItem('number', number)
-            // AsyncStorage.setItem('password', password)
+            AsyncStorage.setItem('username', username)
+            AsyncStorage.setItem('number', number)
+            AsyncStorage.setItem('password', password)
             // alert('Login Successfully')
             navigation.navigate('Home')
-            try {
-              await AsyncStorage.setItem('username', username)
-            } catch (error) {
-              console.error('Error saving data to local storage:', error);
-            }
           }
           else{
             alert('Please enter your Password')
@@ -51,14 +38,9 @@ export default function Login({navigation}){
       else if (number != ''){
         if (username != '') {
           if (password != ''){
-            try {
-              await AsyncStorage.setItem('username', username)
-            } catch (error) {
-              console.error('Error saving data to local storage:', error);
-            }
-            // AsyncStorage.setItem('username', username)
-            // AsyncStorage.setItem('number', number)
-            // AsyncStorage.setItem('password', password)
+            AsyncStorage.setItem('username', username)
+            AsyncStorage.setItem('number', number)
+            AsyncStorage.setItem('password', password)
             // alert('Login Successfully')
             navigation.navigate('Home')
             
@@ -74,14 +56,9 @@ export default function Login({navigation}){
       else if (password != ''){
         if (username != '') {
           if (number != ''){
-            try {
-              await AsyncStorage.setItem('username', username)
-            } catch (error) {
-              console.error('Error saving data to local storage:', error);
-            } 
-            // AsyncStorage.setItem('username', username)
-            // AsyncStorage.setItem('number', number)
-            // AsyncStorage.setItem('password', password)
+            AsyncStorage.setItem('username', username)
+            AsyncStorage.setItem('number', number)
+            AsyncStorage.setItem('password', password)
             // alert('Login Successfully')
             navigation.navigate('Home')    
           }
@@ -105,7 +82,7 @@ export default function Login({navigation}){
       </View>
       <View style={Styles.InputCon}>
         <View >
-            <TextInput style={Styles.NameInput} keyboardType='default' placeholder='User Name'maxLength={15} value={username} onChangeText={(Text)=>setUsername(Text)}></TextInput>
+            <TextInput style={Styles.NameInput} keyboardType='default' placeholder='User Name' maxLength={15} value={username} onChangeText={(Text)=>setUsername(Text)}></TextInput>
         </View>
         <View >
             <TextInput style={Styles.MobileInput} keyboardType='number-pad' placeholder='Mobile Number' maxLength={10} value={number} onChangeText={(Text)=>setNumber(Text)}></TextInput>
@@ -113,9 +90,8 @@ export default function Login({navigation}){
         <View >
             <TextInput style={Styles.PasswordInput} secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
         </View>
-            <TouchableOpacity  >
-                <Text onPress={saveInput} testID='onClick'style={Styles.SubmitBut} >LogIn</Text>
-            </TouchableOpacity>
+            
+          <TouchableOpacity  onPress={saveInput} style={Styles.SubmitBut}>LogIn</TouchableOpacity>
       </View>      
     </View>  
   )

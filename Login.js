@@ -1,81 +1,37 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Login({navigation}){
     const [username, setUsername] = useState('')
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
-    
 
+    const saveInput = ()=>{      
+          AsyncStorage.setItem('username', username)
+          AsyncStorage.setItem('number', number)
+          AsyncStorage.setItem('password', password)
+          switch (true) {
+            case !username && !password && !number:
+              Alert.alert('Error', 'Please enter both username, number and password.');
+              break;
+            case !username:
+              Alert.alert('Error', 'Please enter your username.');
+              break;
+            case !number:
+              Alert.alert('Error', 'Please enter your number.');
+              break;             
+            case !password:
+              Alert.alert('Error', 'Please enter your password.');
+              break;
+            default:
+              Alert.alert('Success', 'Login Successful!');
+              navigation.navigate('Home')
+              break;
+          }
+   }
 
-
-    const saveInput = ()=>{
-      if (username != '' && number !='' && password != ''){
-        AsyncStorage.setItem('username', username)
-        AsyncStorage.setItem('number', number)
-        AsyncStorage.setItem('password', password)
-        // alert('Login Successfully')
-        navigation.navigate('Home')
-      } 
-      else if (username != ''){
-        if (number != '') {
-          if (password != ''){
-            AsyncStorage.setItem('username', username)
-            AsyncStorage.setItem('number', number)
-            AsyncStorage.setItem('password', password)
-            // alert('Login Successfully')
-            navigation.navigate('Home')
-          }
-          else{
-            alert('Please enter your Password')
-          }
-        }
-        else{
-          alert('Please enter your Number')
-        } 
-      }
-      else if (number != ''){
-        if (username != '') {
-          if (password != ''){
-            AsyncStorage.setItem('username', username)
-            AsyncStorage.setItem('number', number)
-            AsyncStorage.setItem('password', password)
-            // alert('Login Successfully')
-            navigation.navigate('Home')
-            
-          }
-          else{
-            alert('Please enter your Password')
-          }
-        }
-        else{
-          alert('Please enter your username')
-        }
-      }
-      else if (password != ''){
-        if (username != '') {
-          if (number != ''){
-            AsyncStorage.setItem('username', username)
-            AsyncStorage.setItem('number', number)
-            AsyncStorage.setItem('password', password)
-            // alert('Login Successfully')
-            navigation.navigate('Home')    
-          }
-          else{
-            alert('Please enter your Number')
-          }
-        }
-        else{
-          alert('Please enter your username')
-        } 
-      }
-      else{
-        alert('Please Enter the fields')
-      }
-    }
-      
-  return (
+   return (
     <View style={Styles.LogCon}>
       <View style={Styles.Header}>
         <Text testID='HomeHeading' style={Styles.LogName}>Welcome to Login Page</Text>
@@ -90,8 +46,9 @@ export default function Login({navigation}){
         <View >
             <TextInput style={Styles.PasswordInput} secureTextEntry= {true} placeholder='Password' maxLength={5} value={password} onChangeText={(Text)=>setPassword(Text)}></TextInput>
         </View>
-            
-          <TouchableOpacity  onPress={saveInput} style={Styles.SubmitBut}>LogIn</TouchableOpacity>
+            <TouchableOpacity  onPress={saveInput} style={Styles.SubmitBut} >
+                <Text style={Styles.BtnText}>LogIn</Text>
+            </TouchableOpacity>
       </View>      
     </View>  
   )
@@ -150,11 +107,15 @@ const Styles = StyleSheet.create({
     borderColor: '#cccccc',
     borderRadius: 10,
     marginTop: 60,
-    paddingVertical: 10,
-    textAlign: 'center',
+    paddingVertical: 7,
+    // textAlign: 'center',
     height: 40,
     width: 220,
     backgroundColor: 'blue',
+    // color: 'white'
+  },
+  BtnText: {
+    textAlign: 'center',
     color: 'white'
   }
 })

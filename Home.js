@@ -17,7 +17,7 @@ export default function Home({navigation}){
     return(
     
       <View style={Styles.HomeCon}>
-        <Text testID='HeaderName' style={Styles.Header}>Welcome to my WebPage</Text>
+        <Text style={Styles.Header}>Welcome to my WebPage</Text>
         <View >
           <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Username: </Text>{username}</Text>
           <Text style={Styles.LocalStorage}><Text style={Styles.InlineText}>Mobile Number: </Text>{number}</Text>

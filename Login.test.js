@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Login from './Login';
+import { Alert } from 'react-native';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
 );
 
-// jest.mock('react-native/Libraries/Alert/Alert', () => ({
-//   alert: jest.fn(),
-// }));
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
+  alert: jest.fn(),
+}));
 
 
 
@@ -45,16 +46,14 @@ describe('Login-1', ()=>{
     const loginButton = getByText('LogIn');
 
     fireEvent.changeText(userInput, 'dinesh');
-    fireEvent.changeText(numberInput, '1234567890');
-    fireEvent.changeText(passwordInput, '12345');
+    fireEvent.changeText(numberInput, '6369797554');
+    fireEvent.changeText(passwordInput, '0907');
     fireEvent.press(loginButton);
 
-    // expect(Alert.alert).toHaveBeenCalledWith('Success', 'Login Successful!');
-
+    expect(Alert.alert).toHaveBeenCalledWith('Success', 'Login Successful!');
     expect(navigationMock.navigate).toHaveBeenCalledWith('Home');
 
   });
-
 })
 
 
@@ -75,7 +74,7 @@ describe('Login-2', ()=>{
     fireEvent.changeText(passwordInput, '');
     fireEvent.press(loginButton);
 
-    // expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your number.');
+    expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your number.');
   });
 
 })
@@ -92,11 +91,11 @@ describe('Login-3', ()=>{
     const loginButton = getByText('LogIn');
 
     fireEvent.changeText(userInput, 'dinesh');
-    fireEvent.changeText(numberInput, 'number');
+    fireEvent.changeText(numberInput, '6369797554');
     fireEvent.changeText(passwordInput, '');
     fireEvent.press(loginButton);
 
-    // expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your password.');
+    expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your password.');
   });
 
 })
@@ -113,11 +112,11 @@ describe('Login-4', ()=>{
     const loginButton = getByText('LogIn');
 
     fireEvent.changeText(userInput, '');
-    fireEvent.changeText(numberInput, 'number');
-    fireEvent.changeText(passwordInput, 'password');
+    fireEvent.changeText(numberInput, '6369797554');
+    fireEvent.changeText(passwordInput, '0907');
     fireEvent.press(loginButton);
 
-    // expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your username.');
+    expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your username.');
   });
 
 })
@@ -138,7 +137,8 @@ describe('Login-5', ()=>{
     fireEvent.changeText(passwordInput, '');
     fireEvent.press(loginButton);
 
-    // expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter your username.');
+    expect(Alert.alert).toHaveBeenCalledWith('Error', 'Please enter both username, number and password.');
   });
 
 })
+

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1713786533074" clover="3.2.0">
-  <project timestamp="1713786533074" name="All files">
+<coverage generated="1713943574308" clover="3.2.0">
+  <project timestamp="1713943574310" name="All files">
     <metrics statements="36" coveredstatements="36" conditionals="8" coveredconditionals="8" methods="12" coveredmethods="12" elements="56" coveredelements="56" complexity="0" loc="36" ncloc="36" packages="1" files="3" classes="3"/>
-    <file name="Home.js" path="C:\Users\dines\OneDrive\Desktop\Sample Pro\Samplepro\Home.js">
+    <file name="Home.js" path="C:\Users\dines\OneDrive\Desktop\LoginAndHome App\Samplepro\Home.js">
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <line num="7" count="8" type="stmt"/>
       <line num="8" count="8" type="stmt"/>
@@ -15,7 +15,7 @@
       <line num="27" count="1" type="stmt"/>
       <line num="32" count="1" type="stmt"/>
     </file>
-    <file name="Login.js" path="C:\Users\dines\OneDrive\Desktop\Sample Pro\Samplepro\Login.js">
+    <file name="Login.js" path="C:\Users\dines\OneDrive\Desktop\LoginAndHome App\Samplepro\Login.js">
       <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
       <line num="6" count="16" type="stmt"/>
       <line num="7" count="16" type="stmt"/>
@@ -42,7 +42,7 @@
       <line num="47" count="5" type="stmt"/>
       <line num="57" count="1" type="stmt"/>
     </file>
-    <file name="Sum.js" path="C:\Users\dines\OneDrive\Desktop\Sample Pro\Samplepro\Sum.js">
+    <file name="Sum.js" path="C:\Users\dines\OneDrive\Desktop\LoginAndHome App\Samplepro\Sum.js">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>

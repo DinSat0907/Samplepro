@@ -24,15 +24,6 @@ test('Render correctly', ()=>{
     const passwordText = getByText('Password:')
     expect(passwordText).toBeTruthy();
 
-    // const usernameGetText = getByText('username')
-    // expect(usernameGetText).toBeTruthy();
-
-    // const numberGetText = getByText('number')
-    // expect(numberGetText).toBeTruthy();
-
-    // const passwordGetText = getByText('password')
-    // expect(passwordGetText).toBeTruthy();
-
 })
 
 

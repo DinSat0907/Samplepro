@@ -1,21 +1,65 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from "expo-status-bar";
-import Login from './Login';
-import Home from './Home';
+import React, { useEffect, useState} from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import axios from 'axios';
 
+export default function APP(){
+  const url = "https://reqres.in/api/users?page=2";
+  const [data, setData] = useState([]);
 
-export default App = () => {
+  const fetchInfo = () => {
+    return axios.get(url).then((res) => setData(res.data.data));
+  }
 
-  const Stack = createStackNavigator();
-  return (
-    <NavigationContainer>
-      <StatusBar style='light' />
-      <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='Home' component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
+    return (
+      <View>
+        <View style={styles.container}>
+        <Text style={styles.text1}>ID</Text><Text style={styles.text1}>Email</Text><Text style={styles.text1}>First_Name</Text><Text style={styles.text1}>Last_Name</Text><Text style={styles.text1}>Avatar</Text>
+        </View>
+        {data.map((u)=>{
+          return ( 
+            <View style={styles.container}>      
+              <Text style={styles.text2}>{u.id}</Text><Text style={styles.text2}>{u.email}</Text><Text style={styles.text2}>{u.first_name}</Text><Text style={styles.text2}>{u.last_name}</Text><Text style={styles.text2}>{u.avatar}</Text>
+            </View>  
+          )
+        }
+      )}  
+      </View>
+      
+
+    )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent:'space-around',
+    backgroundColor: 'orange',
+    marginLeft:45
+  },
+  text1:{
+    textAlign: 'center',
+    flex:1,
+    width: 280,
+    paddingTop:40,
+    borderWidth: 1,
+    borderColor: 'black',
+    fontWeight: 700,
+    fontSize: 20
+  },
+  text2:{
+    textAlign: 'center',
+    flex:1,
+    width: 280,
+    paddingTop:50,
+    borderWidth: 1,
+    borderColor: 'black',
+    fontSize: 15
+  }
+})
+

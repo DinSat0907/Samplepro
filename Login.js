@@ -7,29 +7,83 @@ export default function Login({navigation}){
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
 
-    const saveInput = ()=>{      
-          AsyncStorage.setItem('username', username)
-          AsyncStorage.setItem('number', number)
-          AsyncStorage.setItem('password', password)
-          switch (true) {
-            case !username && !password && !number:
-              Alert.alert('Error', 'Please enter both username, number and password.');
-              break;
-            case !username:
-              Alert.alert('Error', 'Please enter your username.');
-              break;
-            case !number:
-              Alert.alert('Error', 'Please enter your number.');
-              break;             
-            case !password:
-              Alert.alert('Error', 'Please enter your password.');
-              break;
-            default:
-              Alert.alert('Success', 'Login Successful!');
-              navigation.navigate('Home')
-              break;
-          }
-   }
+  //   const saveInput = ()=>{      
+  //         AsyncStorage.setItem('username', username)
+  //         AsyncStorage.setItem('number', number)
+  //         AsyncStorage.setItem('password', password)
+  //         switch (true) {
+  //           case !username && !password && !number:
+  //             Alert.alert('Error', 'Please enter both username, number and password.');
+  //             break;
+  //           case !username:
+  //             Alert.alert('Error', 'Please enter your username.');
+  //             break;
+  //           case !number:
+  //             Alert.alert('Error', 'Please enter your number.');
+  //             break;             
+  //           case !password:
+  //             Alert.alert('Error', 'Please enter your password.');
+  //             break;
+  //           default:
+  //             Alert.alert('Success', 'Login Successful!');
+  //             navigation.navigate('Home')
+  //             break;
+  //         }
+  //  }
+
+
+  function whenAllFieldIsNotEntered(){
+    if (!username && !password && !number){
+      return true
+    }
+    return false
+  }
+
+  function whenUsernameIsNotEntered(){
+    if (!username){
+      return true
+    }
+    return false
+  }
+
+  function whenNumberIsNotEntered(){
+    if (!number){
+      return true
+    }
+    return false
+
+  }
+
+  function whenPasswordIsNotEntered(){
+    if (!password){
+      return true
+    }
+    return false
+    
+  }
+  const saveInput = ()=>{      
+    AsyncStorage.setItem('username', username)
+    AsyncStorage.setItem('number', number)
+    AsyncStorage.setItem('password', password)
+    switch (true) {
+      case whenAllFieldIsNotEntered():
+        Alert.alert('Error', 'Please enter both username, number and password.');
+        break;
+      case whenUsernameIsNotEntered():
+        Alert.alert('Error', 'Please enter your username.');
+        break;
+      case whenNumberIsNotEntered():
+        Alert.alert('Error', 'Please enter your number.');
+        break;             
+      case  whenPasswordIsNotEntered():
+        Alert.alert('Error', 'Please enter your password.');
+        break;
+      default:
+        Alert.alert('Success', 'Login Successful!');
+        navigation.navigate('Home')
+        break;
+    }
+}
 
    return (
     <View style={Styles.LogCon}>

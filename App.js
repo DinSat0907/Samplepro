@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import axios from 'axios';
 
 export default function APP(){
@@ -40,7 +40,7 @@ export default function APP(){
           )
         }
       )}  
-      <Button title='Get Data' onPress={fetchInfo}></Button>
+      <TouchableOpacity style={styles.btn} onPress={fetchInfo}>Get Data</TouchableOpacity>
       </View>
     )
 }
@@ -74,6 +74,16 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     fontSize: 15,
     backgroundColor: 'orange',
+  },
+  btn: {
+    alignSelf: 'center',
+    paddingTop:10,
+    textAlign: 'center',
+    width: 100,
+    height: 40,
+    backgroundColor: 'blue',
+    borderRadius: 8,
+    marginTop: 10
   }
 })
 

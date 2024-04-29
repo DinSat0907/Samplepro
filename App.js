@@ -1,12 +1,12 @@
 import React, { useEffect, useState} from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import axios from 'axios';
-var id = 13
+// var id = 13
 
 export default function APP(){
-  const url = "https://reqres.in/api/users?page=2";
+  // const url = "https://reqres.in/api/users?page=2/id";
   const [data, setData] = useState([]);
-  const [first_name, setFirst_Name] = useState('')
+  const [name, setName] = useState('')
 
 
   useEffect(() => {
@@ -17,8 +17,9 @@ export default function APP(){
     // return axios.get(url).then((res) => setData(res.data.data));
 
       try {
-        const response = await axios.get(url);
+        const response = await axios.get("https://reqres.in/api/users/3");
         setData(response.data.data)
+        console.log(response.data.data)
         return response;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -26,12 +27,11 @@ export default function APP(){
       }
   }
 
-
-  const postUser = async()=>{
+  const putUser = async()=>{
     try {
-      const response = await axios.post(url,{id:id++,first_name: first_name});
-      setData([...data,response.data])
-      console.log([...data,response.data])
+      const response = await axios.put(`https://reqres.in/api/users/${3}`,{first_name: name});
+      setData(response.data)
+      console.log(response.data)
       // setFirst_Name('')
 
       return response;
@@ -39,32 +39,21 @@ export default function APP(){
       console.error('Error fetching data:', error);
       throw error;
     }
-    
-
   }
+
 
     return (
       <View>
         <View style={styles.container}>
-        <Text style={styles.text1}>First_Name</Text>
+          <Text style={styles.text1}>First_Name</Text>
         </View>
-        
-        {data.map((u)=>{
-          return ( 
-            <View key={u.id} style={styles.container}>      
-              <Text  style={styles.text2}>{u.first_name}</Text>
-            </View>  
-          )
-        }
-      )}
-      <View style={styles.postContainer}>
-      <TextInput style={styles.inputField} placeholder='Post Name' value={first_name} onChangeText={e=>setFirst_Name(e)}></TextInput>
-      
-      <TouchableOpacity style={styles.btn} onPress={postUser}>Post</TouchableOpacity>
-      </View>  
-
-      {/* <TouchableOpacity style={styles.btn} onPress={fetchInfo}>Update</TouchableOpacity>
-      <TouchableOpacity style={styles.btn} onPress={fetchInfo}>Delete</TouchableOpacity> */}
+        <View style={styles.container}>      
+          <Text  style={styles.text2}>{data.first_name}</Text>
+        </View>
+        <View style={styles.postContainer}>
+          <TextInput style={styles.inputField} placeholder='Update Name' value={name} onChangeText={e=>setName(e)}></TextInput>
+          <TouchableOpacity style={styles.btn} onPress={putUser}>Update</TouchableOpacity>
+        </View>
       </View>
     )
 }
@@ -75,7 +64,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     width: 500,
-    // marginLeft:445
   },
   text1:{
     textAlign: 'center',
@@ -95,6 +83,7 @@ const styles = StyleSheet.create({
     width: 280,
     borderWidth: 1,
     borderColor: 'black',
+    padding:10,
     fontSize: 15,
     backgroundColor: 'orange',
   },

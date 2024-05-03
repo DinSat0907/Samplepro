@@ -26,6 +26,7 @@ export default function APP(){
     
   }
 
+
     return (
       <View>
         <View style={styles.container}>
@@ -44,6 +45,8 @@ export default function APP(){
       </View>
     )
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -86,4 +89,6 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 })
+
+
 

@@ -6,25 +6,22 @@ export default function APP(){
   const url = "https://reqres.in/api/users?page=2";
   const [data, setData] = useState([]);
 
+  useEffect(() => {
+   
 
-  // useEffect(() => {
-  //   fetchInfo();
-  // }, []);
-
-  const fetchInfo = async() => {
-    // return axios.get(url).then((res) => setData(res.data.data));
-
+   async function fetchInfo(){
       try {
         const response = await axios.get(url);
         setData(response.data.data)
-  
-        return response;
+
       } catch (error) {
         console.error('Error fetching data:', error);
-        throw error;
+
       }
-    
   }
+  
+  fetchInfo();
+}, []);
 
 
     return (
@@ -32,21 +29,16 @@ export default function APP(){
         <View style={styles.container}>
         <Text style={styles.text1}>Id</Text><Text style={styles.text1}>Email</Text><Text style={styles.text1}>First_Name</Text><Text style={styles.text1}>Last_Name</Text><Text style={styles.text1}>Avatar</Text>
         </View>
-        
-        {data.map((u)=>{
-          return ( 
-            <View style={styles.container}>      
-              <Text style={styles.text2}>{u.id}</Text><Text style={styles.text2}>{u.email}</Text><Text style={styles.text2}>{u.first_name}</Text><Text style={styles.text2}>{u.last_name}</Text><Text style={styles.text2}>{u.avatar}</Text>
+        {data.map((u)=>(
+            <View style={styles.container} key={u.id}>      
+              <Text style={styles.text2} >{u.id}</Text><Text style={styles.text2} >{u.email}</Text><Text style={styles.text2} >{u.first_name}</Text><Text style={styles.text2} >{u.last_name}</Text><Text style={styles.text2} >{u.avatar}</Text>
             </View>  
-          )
-        }
+          ) 
       )}  
-      <TouchableOpacity style={styles.btn} onPress={fetchInfo}>Get Data</TouchableOpacity>
+      {/* <TouchableOpacity style={styles.btn} onPress={fetchInfo}>Get Data</TouchableOpacity> */}
       </View>
     )
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
